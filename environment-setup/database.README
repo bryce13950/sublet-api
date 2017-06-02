@@ -1,0 +1,13 @@
+In order to setup the database you will have to log into postgres on the vagrant and run the following commands:
+
+CREATE DATABASE southshore;
+CREATE USER southshore;
+GRANT ALL PRIVILEGES ON DATABASE southshore TO southshore;
+
+You will then have to set the password for the user by entering the command:
+
+\password southshore
+
+Then you will need to enter the password twice:
+
+Zg]a"<jc2[GR9j9R
