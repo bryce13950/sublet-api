@@ -1,29 +1,57 @@
 server {
-    listen  80;
+    listen 80;
+    listen  [::]:80;
 
-    root /vagrant;
+    sendfile off;
+
+    server_name sublet.local;
+
+    root /web_root/public;
     index index.php;
+    charset UTF-8;
 
-    server_name maurine.axolotlinteractive.com;
-
-    location / {
-        try_files $uri $uri/ /index.php$is_args$args;
+    location = /favicon.ico {
+        log_not_found off;
+        access_log off;
     }
 
-    error_page 404 /404.html;
+    location = /robots.txt {
+        allow all;
+        log_not_found off;
+        access_log off;
+    }
 
-    error_page 500 502 503 504 /50x.html;
-        location = /50x.html {
-        root /usr/share/nginx/www;
+    location ~ /\.svn/* {
+        deny all;
+    }
+
+    location ~ /\.git/* {
+        deny all;
+    }
+
+    location /nginx_status {
+        stub_status on;
+        access_log off;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.php?q=$uri&$args;
     }
 
     location ~ \.php$ {
         fastcgi_buffer_size 128k;
         fastcgi_buffers 4 256k;
         fastcgi_busy_buffers_size 256k;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass unix:/var/run/php5-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php7.1-fpm.sock;
         fastcgi_index index.php;
         include fastcgi_params;
     }
+
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+        expires max;
+        log_not_found off;
+    }
+
 }
