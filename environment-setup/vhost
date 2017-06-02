@@ -6,12 +6,9 @@ server {
 
     server_name {{host_name}};
 
-    root /vagrant/sites/SouthShoreLLC-Reality-API/code/public;
+    root /web_root/public;
     index index.php;
     charset UTF-8;
-
-    access_log /var/log/nginx/SouthShoreLLC-Reality-API.access.log;
-    error_log /var/log/nginx/SouthShoreLLC-Reality-API.error.log;
 
     location = /favicon.ico {
         log_not_found off;
