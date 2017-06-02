@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
 
         config.vm.network :private_network, ip: '192.168.167.64'
 
-        forward.vm.synced_folder "./", "/vagrant", :owner=> 'www-data', :group=>'www-data'
+        forward.vm.synced_folder "./code", "/web_root", :owner=> 'www-data', :group=>'www-data'
 
         config.vm.provision "ansible" do |ansible|
 
