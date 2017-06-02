@@ -1,0 +1,27 @@
+---
+- name: nginxphp | Install Nginx
+  apt: pkg=nginx state=latest force=yes
+
+- name: nginxphp | Install php7.1-fpm
+  apt: pkg=php7.1-fpm state=latest
+
+- name: nginxphp | Setup Composer
+  shell: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+
+- name: nginxphp | Install Laravel
+  shell: composer global require "laravel/installer"
+
+- name: nginxphp | Link Laravel
+  file: path=/usr/local/bin/laravel src=/root/.composer/vendor/bin/laravel state=link
+
+- name: nginxphp | Change default nginx site
+  template: src=files/nginx/default.tpl dest=/etc/nginx/sites-available/default
+  notify: restart nginx
+
+- name: Create symlink to default
+  file: src=/etc/nginx/sites-available/default dest=/etc/nginx/sites-enabled/default state=link
+  notify: nginx reload
+
+- name: nginxphp | Install PHP 7.1 Packages
+  apt: pkg={{ item }} state=latest
+  with_items: "{{ php_packages }}"

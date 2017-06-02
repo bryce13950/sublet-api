@@ -1,0 +1,25 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+    sys_packages: [ 'curl', 'vim', 'zip', 'git', 'software-properties-common', 'build-essential', 'postfix', 'memcached']
+    php_packages: [ 'php7.1-curl', 'php7.1-mbstring', 'php7.1-xml', 'php7.1-mcrypt', 'php7.1-cli', 'php7.1-mysql', 'php7.1-pgsql', 'php-memcached', 'php7.1-zip', 'php7.1-mongodb' ]
+
+  tasks:
+    - include: tasks/init.yml
+    - include: tasks/postgresql.yml
+    - include: tasks/mongodb.yml
+    - include: tasks/nginxphp.yml
+    - include: tasks/ssh.yml
+      when: application_env == "production"
+
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
+
+    - name: restart mysql
+      service: name=mysql state=restarted
+
+    - name: restart php7.1-fpm
+      service: name=php7.1-fpm state=restarted
+

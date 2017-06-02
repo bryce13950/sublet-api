@@ -1,0 +1,22 @@
+---
+- name: init | Update apt
+  apt: update_cache=yes
+
+- name: init | Install Sys Packages
+  apt: pkg={{ item }} state=latest
+  with_items: "{{ sys_packages }}"
+
+- name: init | make sure python-software-properties is installed
+  apt: pkg=python-software-properties state=latest
+
+- name: init | Add ppa Repository for latest stable php
+  apt_repository: repo='ppa:ondrej/php'
+
+- name: init | Add ppa Repository for nginx
+  apt_repository: repo='ppa:nginx/stable'
+
+- name: init | Update apt
+  apt: update_cache=yes
+
+- name: init | Upgrade Packages
+  apt: upgrade=yes

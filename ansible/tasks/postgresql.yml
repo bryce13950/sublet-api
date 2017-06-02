@@ -1,0 +1,3 @@
+---
+- name: PostgreSQL | Install PostgreSQL 9.3
+  apt: pkg=postgresql state=latest
