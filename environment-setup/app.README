@@ -2,14 +2,11 @@ This readme will walk you through the process to get the application up and runn
 
 #######################
 
-Copy the contents of the vhost file. Open a terminal to the vagrant and then log in as root. Open the file /etc/nginx/site-available/southshore with your favorite text editor! Paste in the contents of vhost, and then change the host to 'api.southshorereality.local'. After this run the following commands.
-ln -s /etc/nginx/sites-available/southshore /etc/nginx/sites-enabled/southshore
-service restart nginx
+Open a terminal to the vagrant and then log in as root, and run the following commands.
 
-Once that is complete a few application specific commands need to be ran
-
-cd /vagrant/southshore
+cd /web_root
 composer install
-npm install <-- NPM is not run from vagrant, run from your local machine (OSX, etc)
 php artisan migrate
 php artisan seed
+
+After that logout back to the host machine, and run `npm install` in the code directory.
