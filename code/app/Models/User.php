@@ -10,11 +10,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * Class User
  * @package Sublet\Models
  *
- * @property $id int the unique id in the database
- * @property $email string unique to a single user
- * @property $phone_number string the users phone number
- * @property $name string the real name of the user
- * @property $password string the hashed password of this user
+ * @property int id the unique id in the database
+ * @property string email unique to a single user
+ * @property string phone_number the users phone number
+ * @property string name the real name of the user
+ * @property string password the hashed password of this user
  */
 class User extends Authenticatable
 {

@@ -12,6 +12,12 @@ namespace Sublet\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class BaseModel
+ * @package Sublet\Models
+ *
+ * @property int id the db id of this model
+ */
 class BaseModel extends Model
 {
 

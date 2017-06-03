@@ -18,6 +18,7 @@ class CreateRequestsTable extends Migration
             $table->softDeletes();
             $table->unsignedInteger('availability_id')->references('id')->on('availabilities');
             $table->unsignedInteger('user_id')->references('id')->on('users');
+            $table->boolean('accepted');
             $table->timestamps();
         });
     }
