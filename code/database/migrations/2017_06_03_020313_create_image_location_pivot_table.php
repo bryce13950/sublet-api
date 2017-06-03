@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImageRoomPivotTable extends Migration
+class CreateImageLocationPivotTablegit  extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateImageRoomPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('image_room', function (Blueprint $table) {
+        Schema::create('image_location', function (Blueprint $table) {
             $table->integer('image_id')->unsigned()->index();
             $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
-            $table->integer('room_id')->unsigned()->index();
-            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
-            $table->primary(['image_id', 'room_id']);
+            $table->integer('location_id')->unsigned()->index();
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+            $table->primary(['image_id', 'location_id']);
         });
     }
 
@@ -29,6 +29,6 @@ class CreateImageRoomPivotTable extends Migration
      */
     public function down()
     {
-        Schema::drop('image_room');
+        Schema::drop('image_location');
     }
 }
