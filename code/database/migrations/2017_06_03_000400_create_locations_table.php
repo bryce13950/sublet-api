@@ -25,6 +25,7 @@ class CreateLocationsTable extends Migration
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
             $table->boolean('needs_refresh')->default(false);
+            $table->text('description');
             $table->integer('user_id');
             $table->softDeletes();
         });

@@ -22,6 +22,7 @@ namespace Sublet\Models;
  * @property double latitude the latitude coordinate of this location
  * @property double longitude the longitude coordinate of this location
  * @property boolean needs_refresh whether or not this location needs to have it's longitude and latitude refreshed
+ * @property string description the entered description of this location
  * @property int user_id the primary key of the user that owns this location
  * @property User user the object of the user that made this location
  */

@@ -20,6 +20,7 @@ class CreateRoomsTable extends Migration
             $table->integer('cost');
             $table->integer('guests');
             $table->integer('beds');
+            $table->text('description');
             $table->softDeletes();
             $table->timestamps();
         });
