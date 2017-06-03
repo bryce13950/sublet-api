@@ -17,6 +17,7 @@ class CreateAuthenticationTokensTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('key');
+            $table->unsignedInteger('user_id')->references('id')->on('users');
             $table->softDeletes();
         });
     }
