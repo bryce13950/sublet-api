@@ -24,6 +24,7 @@ class CreateLocationsTable extends Migration
             $table->string('state');
             $table->double('latitude');
             $table->double('longitude');
+            $table->integer('user_id');
             $table->softDeletes();
         });
     }
