@@ -22,6 +22,8 @@ class CreateLocationsTable extends Migration
             $table->string('postal_code');
             $table->string('city');
             $table->string('state');
+            $table->double('latitude');
+            $table->double('longitude');
             $table->softDeletes();
         });
     }
